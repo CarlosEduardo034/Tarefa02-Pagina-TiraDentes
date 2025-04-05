@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgba(250, 235, 215, 0.3);
+}
+
+header {
+    height: 10vh;
+    width: 100vw;
+}
+
+main {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    height: 80vh;
+    width: 80%;
+    display: flex;
+}
+
+.content {
+    height: 100%;
+    width: 65%;
+}
+
+.menu {
+    height: 15%;
+    width: 100%;
+}
+
+.menu div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu div ul {
+    height: auto;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+.menu div ul li {
+    cursor: pointer;
+}
+
+.card-box {
+    height: 65%;
+    width: 100%;
+    padding-top: 20px;
+}
+
+.card-box #card-start {
+    height: 80%;
+    width: 90%;
+    padding: 50px;
+    display: block;
+}
+
+.card-box #card-biography {
+    height: 80%;
+    width: 90%;
+    padding: 50px;
+    display: none;
+}
+
+.card-box #card-cultural-impact {
+    height: 80%;
+    width: 90%;
+    padding: 50px;
+    display: none;
+}
+
+.card-box #card-start p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card-box #card-biography p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card-box #card-cultural-impact p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.handout {
+    height: 100%;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.handout img {
+    height: 65%;
+    width: 100%;
+}
