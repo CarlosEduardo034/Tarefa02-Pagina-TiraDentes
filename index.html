@@ -10,7 +10,7 @@
 
 <body>
     <header>
-
+        <h1 id="typewriter"></h1>
     </header>
     <main>
         <div class="container">
@@ -39,6 +39,13 @@
                             o advento da República no Brasil, Tiradentes é considerado herói nacional: a figura de
                             mártir foi criada pelos republicanos com a intenção de ressignificar a identidade
                             brasileira.[2]</p>
+                        <br>
+                        <h2>Titulo 2</h2>
+                        <br>
+                        <p> O dia de sua execução, 21 de abril, é feriado nacional. É patrono cívico do Brasil, além de
+                            patrono das polícias militares e polícias civis de vários estados brasileiros.[3] Seu nome
+                            está inscrito no Livro dos Heróis da Pátria desde 21 de abril de 1992. A cidade mineira de
+                            Tiradentes, antiga Vila de São José do Rio das Mortes, foi renomeada em sua homenagem.</p>
                         <br>
                         <p> O dia de sua execução, 21 de abril, é feriado nacional. É patrono cívico do Brasil, além de
                             patrono das polícias militares e polícias civis de vários estados brasileiros.[3] Seu nome
@@ -128,14 +135,71 @@
                 </div>
             </div>
             <div class="handout">
-                <img src="https://t4.ftcdn.net/jpg/04/77/73/51/360_F_477735140_XL34SIxX7n0uCgHDH3jXFJMfXnY6R28v.jpg"
-                    alt="Ilustrção de Tiradentes">
+                <div class="carousel">
+                    <div class="carousel-track" id="track">
+                        <div class="carousel-slide"><img
+                                src="https://t4.ftcdn.net/jpg/04/77/73/51/360_F_477735140_XL34SIxX7n0uCgHDH3jXFJMfXnY6R28v.jpg"
+                                alt="Imagem 1">
+                        </div>
+                        <div class="carousel-slide"><img
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRulwNE7ti8NxYX18NewFq4TIPaE9Sv5Q2aD_3ApsSeOGl-iL38k6jZBMAY_wIZpR3WUo&usqp=CAU"
+                                alt="Imagem 2">
+                        </div>
+                        <div class="carousel-slide"><img
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdU7o09sAoNngdGKbMe4lzmI_D3-d9idPsXqDJAN0fRNP-Im3kyKV19XXm32Iy7epnhYo&usqp=CAU"
+                                alt="Imagem 3">
+                        </div>
+                        <div class="carousel-slide"><img
+                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlnt8n5p8Fu3PdeotOGbZBSUqDJc2wZKhZ4wV2ElAsXQ-LuC1D61qIlgkC3Juv9sGHO8E&usqp=CAU"
+                                alt="Imagem 4">
+                        </div>
+                        <div class="carousel-slide"><img
+                                src="https://blog.artsoul.com.br/wp-content/uploads/2023/04/image-7.png" alt="Imagem 5">
+                        </div>
+                    </div>
+                    <div class="carousel-buttons">
+                        <button id="prev">&#10094;</button>
+                        <button id="next">&#10095;</button>
+                    </div>
+                </div </div>
             </div>
-        </div>
     </main>
 </body>
 
 <script>
+    const text = "Tiradentes";
+    const speed = 150;
+
+    const typewriter = document.getElementById("typewriter");
+
+    function getRandomHexColor() {
+        return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+    };
+
+    function typeEffect() {
+        let index = 0;
+        typewriter.textContent = "";
+
+        console.log(getRandomHexColor());
+        typewriter.style.color = getRandomHexColor();
+
+        const spacing = Math.floor(Math.random() * 101);
+        typewriter.style.letterSpacing = `${spacing}px`;
+
+        function type() {
+            if (index < text.length) {
+                typewriter.textContent += text.charAt(index);
+                index++;
+                setTimeout(type, speed);
+            }
+        }
+
+        type();
+    }
+
+    typeEffect();
+    setInterval(typeEffect, 2800);
+
     const displayStart = document.getElementById("display-start");
     const displayBiography = document.getElementById("display-biography");
     const displayCulturalImpact = document.getElementById("display-cultural-impact");
@@ -159,6 +223,53 @@
             }
         });
     }
+
+    const track = document.getElementById('track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    let currentIndex = 0;
+    let interval;
+
+    function updateCarousel() {
+        const slideWidth = slides[0].clientWidth;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+
+    function goToNext() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateCarousel();
+    }
+
+    function goToPrev() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateCarousel();
+    }
+
+    function startAutoSlide() {
+        interval = setInterval(goToNext, 2000);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(interval);
+    }
+
+    nextButton.addEventListener('click', () => {
+        goToNext();
+        stopAutoSlide();
+        startAutoSlide();
+    });
+
+    prevButton.addEventListener('click', () => {
+        goToPrev();
+        stopAutoSlide();
+        startAutoSlide();
+    });
+
+    window.addEventListener('resize', updateCarousel);
+
+    updateCarousel();
+    startAutoSlide();
 </script>
 
 </html>
